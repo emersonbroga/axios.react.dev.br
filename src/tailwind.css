@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+div > ::-webkit-scrollbar {
+  @apply w-3;
+}
+
+div > ::-webkit-scrollbar-track {
+  @apply bg-slate-800;
+}
+
+div > ::-webkit-scrollbar-thumb {
+  @apply bg-slate-700 rounded-sm;
+}
+div > ::-webkit-scrollbar-corner {
+  @apply bg-slate-800;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.btn-primary {
+  @apply px-4 py-2 rounded-md text-sm font-medium border-0 focus:outline-none focus:ring-0 transition text-white bg-indigo-400 hover:bg-indigo-500 active:bg-indigo-500;
+}
+
+.btn-secondary {
+  @apply px-4 py-2 rounded-md text-sm font-medium border focus:outline-none focus:ring-0 transition text-gray-600 border-gray-600 hover:text-white hover:bg-gray-600 active:bg-gray-700;
+}
+
+.btn-danger {
+  @apply px-4 py-2 rounded-md text-sm font-medium border-0 focus:outline-none focus:ring-0 transition text-white bg-red-500 hover:bg-red-600 active:bg-red-700;
+}
+
+.input-text {
+  @apply w-full p-2 text-lg border-none outline-0 ring-0 rounded-lg text-slate-200 bg-slate-700 active:bg-slate-600 focus:bg-slate-600 hover:active:bg-slate-600;
+}
+
+.input-text.avatar {
+  @apply -z-10 pr-16;
+}
+
+.animate-expand {
+  @apply mx-auto;
+  height: 1px;
+  width: 20%;
+  animation-name: expand;
+  animation-duration: 1.3s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-fill-mode: forwards;
+}
+
+@keyframes expand {
+  0% {
+    width: 20%;
+  }
+  100% {
+    width: 100%;
+  }
+}
