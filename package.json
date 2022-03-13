@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "http-server -p 8080 ./public",
-    "css": "npx tailwindcss -i ./src/tailwind.css -o ./public/styles.css --watch"
+    "css": "npx tailwindcss -i ./src/tailwind.css -o ./public/style.css --watch"
   },
   "author": "",
   "license": "MIT",
