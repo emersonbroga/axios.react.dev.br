@@ -1,7 +1,7 @@
 const formFind = document.querySelector('[data-form-find]');
 const formUser = document.querySelector('[data-form-user]');
 const avatarInput = document.querySelector('[data-avatar]');
-const uploadButton = document.querySelector('[data-upload]');
+const uploadInput = document.querySelector('[data-upload]');
 const progressBar = document.querySelector('[data-progress]');
 
 const handleFindSubmit = (e) => {
@@ -20,8 +20,9 @@ const handleUserSubmit = (e) => {
   const url = apiUser(id, 'upload');
 
   const options = {
-    url,
     method: 'PATCH',
+    url,
+    data,
     headers: {
       'Content-Type': 'multipart/form-data',
     },
@@ -30,7 +31,6 @@ const handleUserSubmit = (e) => {
       progressBar.style.width = `${percentage}%`;
       progressBar.innerText = `${percentage}%`;
       progressBar.parentNode.style.display = percentage === 100 ? 'none' : 'block';
-      console.log(percentage);
     },
   };
 
@@ -44,4 +44,4 @@ const handleUploadChange = (e) => {
 
 formFind.addEventListener('submit', handleFindSubmit);
 formUser.addEventListener('submit', handleUserSubmit);
-uploadButton.addEventListener('change', handleUploadChange);
+uploadInput.addEventListener('change', handleUploadChange);
