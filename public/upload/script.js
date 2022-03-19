@@ -1,6 +1,6 @@
 const formFind = document.querySelector('[data-form-find]');
 const formUser = document.querySelector('[data-form-user]');
-const uploadButton = document.querySelector('[data-upload]');
+const uploadInput = document.querySelector('[data-upload]');
 const avatarInput = document.querySelector('[data-avatar]');
 
 const handleFindSumbit = (e) => {
@@ -27,10 +27,10 @@ const handleUserSumbit = (e) => {
   axios.patch(url, data, options).then(printResponse);
 };
 
-const handleUploadClick = (e) => {
+const handleUploadChange = (e) => {
   avatarInput.value = e.target.files[0].name;
 };
 
 formFind.addEventListener('submit', handleFindSumbit);
 formUser.addEventListener('submit', handleUserSumbit);
-uploadButton.addEventListener('change', handleUploadClick);
+uploadInput.addEventListener('change', handleUploadChange);
