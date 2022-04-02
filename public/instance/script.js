@@ -2,10 +2,9 @@ const formFind = document.querySelector('[data-form-find]');
 
 const AxiosInstance = axios.create({
   baseURL: API_BASE,
-  timeout: 1000,
   headers: {
     Authorization: 'Bearer Token',
-    'X-Project': 'Curso de Axios',
+    'X-Api-Key': 'abc',
   },
 });
 
