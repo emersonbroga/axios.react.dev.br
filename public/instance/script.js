@@ -3,7 +3,7 @@ const formFind = document.querySelector('[data-form-find]');
 const AxiosInstance = axios.create({
   baseURL: API_BASE,
   headers: {
-    Authorization: 'Bearer Token',
+    Authorization: `Bearer Token`,
     'X-Api-Key': 'abc',
   },
 });
@@ -13,8 +13,9 @@ const handleFindSubmit = (e) => {
 
   const data = getFormData(formFind);
   const id = data.get('id');
+  const url = apiUser(id);
 
-  AxiosInstance.get(`users/${id}`).then(printResponse);
+  AxiosInstance.get(url).then(printResponse);
 };
 
 formFind.addEventListener('submit', handleFindSubmit);
