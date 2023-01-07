@@ -11,7 +11,12 @@ const handleFindSubmit = (e) => {
     timeout: 3000,
   };
 
-  axios.get(url, options).then(printResponse).catch(console.log);
+  axios
+    .get(url, options)
+    .then(printResponse)
+    .catch((e) => {
+      console.log(e.message);
+    });
 };
 
 formFind.addEventListener('submit', handleFindSubmit);
