@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "http-server -p 8080 ./public",
+    "start": "http-server -p 8080 -c-1 ./public",
     "css": "npx tailwindcss -i ./src/tailwind.css -o ./public/style.css --watch"
   },
   "author": "",
