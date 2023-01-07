@@ -3,31 +3,35 @@ const formUser = document.querySelector('[data-form-user]');
 
 const BrogaApi = {
   defaultErrorHandler: function (error) {
-    const errorJson = error.toJson();
-    printStatus(errorJson.status);
-    printHeaders(errorJson.headers);
-    printData(errorJson.message);
+    console.log('*** defaultErrorHandler', error);
 
-    // enviar para um serviço de logs
-    console.log('*** The log service', { error: errorJson });
-    // throw error;
+    // enviar o erro, para um servico de logs. (papertrail)
+    console.log('*** The log Service', { error: error.toJSON() });
+
+    printStatus(error.response.status);
+    printHeaders(error.response.headers);
+
+    if (error.response.status === 404) {
+      printData('Usuário não encontrado.');
+      return;
+    }
+
+    printData(error.message);
   },
-
   get: function (path, options = {}) {
-    console.log(this);
-    return axios.get(path, options).catch(console.log);
+    axios.get(path, options).then(printResponse).then(populate).catch(this.defaultErrorHandler);
   },
 
-  post: function (path, data = {}, options = {}) {
-    return axios.post(path, data, options).catch(this.defaultErrorHandler);
+  post: function (path, data, options = {}) {
+    axios.post(path, data, options).then(printResponse).then(populate).catch(this.defaultErrorHandler);
   },
 
-  put: function (path, data = {}, options = {}) {
-    return axios.put(path, data, options).catch(this.defaultErrorHandler);
+  put: function (path, data, options = {}) {
+    axios.put(path, data, options).then(printResponse).then(populate).catch(this.defaultErrorHandler);
   },
 
   delete: function (path, options = {}) {
-    return axios.delete(path, options).catch(this.defaultErrorHandler);
+    axios.delete(path, options).then(printResponse).then(populate).catch(this.defaultErrorHandler);
   },
 };
 
@@ -38,7 +42,7 @@ const handleFindSubmit = (e) => {
   const id = data.get('id');
   const url = apiUser(id);
 
-  BrogaApi.get(url).then(printResponse).then(populate);
+  BrogaApi.get(url);
 };
 
 const handleUserSubmit = (e) => {
@@ -48,7 +52,7 @@ const handleUserSubmit = (e) => {
   const id = data.get('id');
   const url = apiUser(id);
 
-  BrogaApi.put(url, data).then(printResponse).then(populate);
+  BrogaAPI.put(url, data);
 };
 
 formFind.addEventListener('submit', handleFindSubmit);
